@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # OpenWeatherMap API Key (Replace with your own key)
-API_KEY = "YOUR_API_KEY"
+API_KEY = "f8cb952227a9226d7088520604acec5a"
 
 # List of Northeastern states in India
 northeastern_states = [

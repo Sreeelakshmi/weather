@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-import matplotlib.pyplot as plt
+
 import numpy as np
 
 # OpenWeatherMap API Key (Replace with your own key)
@@ -47,19 +47,4 @@ if weather_data:
             st.metric("🌡️ Temperature (°C)", f"{info['Temperature']}°C")
             st.metric("💧 Humidity", f"{info['Humidity']}%")
             st.write(f"**Condition:** {info['Condition']}")
-
-# Plot a bar chart for temperature
-st.subheader("📊 Temperature Comparison Across Northeastern States")
-
-states = list(weather_data.keys())
-temperatures = [info["Temperature"] for info in weather_data.values()]
-
-fig, ax = plt.subplots(figsize=(10, 5))
-colors = plt.cm.Paired(np.linspace(0, 1, len(states)))  # Color mapping
-ax.bar(states, temperatures, color=colors)
-ax.set_ylabel("Temperature (°C)")
-ax.set_title("Temperature Across Northeastern States")
-ax.set_xticklabels(states, rotation=30, ha="right")
-
-st.pyplot(fig)  # Display the plot in Streamlit
 

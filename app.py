@@ -9,7 +9,7 @@ API_KEY = "f8cb952227a9226d7088520604acec5a"
 # List of Northeastern states in India
 northeastern_states = [
     "Arunachal Pradesh", "Assam", "Manipur", "Meghalaya",
-    "Mizoram", "Nagaland", "Sikkim", "Tripura"
+    "Mizoram", "Nagaland", "Tripura"
 ]
 
 # Function to fetch weather data

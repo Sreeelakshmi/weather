@@ -37,14 +37,11 @@ for state in northeastern_states:
             "Icon": f"http://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
         }
 
-# Display Weather Data in Streamlit Columns
+# Display Weather Data using Expanders
 if weather_data:
-    cols = st.columns(4)  # Create 4 columns for better layout
-    for index, (state, info) in enumerate(weather_data.items()):
-        with cols[index % 4]:  # Distribute states across columns
-            st.subheader(state)
+    for state, info in weather_data.items():
+        with st.expander(f"🌍 {state}"):
             st.image(info["Icon"], width=80)  # Display weather icon
             st.metric("🌡️ Temperature (°C)", f"{info['Temperature']}°C")
             st.metric("💧 Humidity", f"{info['Humidity']}%")
             st.write(f"**Condition:** {info['Condition']}")
-

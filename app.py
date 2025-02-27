@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-
 import numpy as np
 
 # OpenWeatherMap API Key (Replace with your own key)
@@ -22,7 +21,30 @@ def get_weather(city):
 
 # Streamlit UI
 st.set_page_config(page_title="Northeast Weather", layout="wide")
-st.title("🌤️ Weather in Northeastern States of India")
+st.markdown("""
+    <style>
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #2E86C1;
+        }
+        .expander-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2874A6;
+        }
+        .weather-box {
+            background-color: #F2F4F4;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown('<p class="title">🌤️ Weather in Northeastern States of India</p>', unsafe_allow_html=True)
 
 # Create a dictionary to store weather data
 weather_data = {}
@@ -41,7 +63,13 @@ for state in northeastern_states:
 if weather_data:
     for state, info in weather_data.items():
         with st.expander(f"🌍 {state}"):
-            st.image(info["Icon"], width=80)  # Display weather icon
-            st.metric("🌡️ Temperature (°C)", f"{info['Temperature']}°C")
-            st.metric("💧 Humidity", f"{info['Humidity']}%")
-            st.write(f"**Condition:** {info['Condition']}")
+            st.markdown(f'<p class="expander-header">{state} Weather Details</p>', unsafe_allow_html=True)
+            col1, col2 = st.columns([1, 3])
+            with col1:
+                st.image(info["Icon"], width=80)  # Display weather icon
+            with col2:
+                st.markdown(f'<div class="weather-box">', unsafe_allow_html=True)
+                st.metric("🌡️ Temperature (°C)", f"{info['Temperature']}°C")
+                st.metric("💧 Humidity", f"{info['Humidity']}%")
+                st.write(f"**Condition:** {info['Condition']}")
+                st.markdown('</div>', unsafe_allow_html=True)
